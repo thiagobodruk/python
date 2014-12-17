@@ -41,14 +41,14 @@ file.write("\tPRIMARY KEY (`id`) )\n")
 file.write("ENGINE = InnoDB;\n\n")
 
 # Insere os valores da tabela 'books'
-file.write("INSERT INTO books(name, abbrev,testament) VALUES ")
+file.write("INSERT INTO books(id, name, abbrev,testament) VALUES ")
 i = 0
 while(i <= 65):
-	if(n<39):
+	if(i<39):
 		testament = 1
 	else:
 		testament = 2
-	file.write("('" + names[i] + "','" + books[i] + "','" + str(testament) + "')")
+	file.write("('" + str(i+1) + "','" + names[i] + "','" + books[i] + "','" + str(testament) + "')")
 	if(i < (len(books) - 1)):
 		file.write(",")
 	i += 1
@@ -62,7 +62,7 @@ file.write("\t`testament` INT NULL,\n")
 file.write("\t`book` INT NULL,\n")
 file.write("\t`chapter` INT NULL,\n")
 file.write("\t`verse` INT NULL,\n")
-file.write("\t`text` VARCHAR(75) NULL,\n")
+file.write("\t`text` TEXT NULL,\n")
 file.write("\tPRIMARY KEY (`id`) )\n")
 file.write("ENGINE = InnoDB;\n\n")
 
@@ -73,8 +73,8 @@ while(n <= m):
 	c = 1
 	print('Parsing... ' + name)
 	while(c <= chap):
-		url = 'http://www.bibliaonline.com.br/' + version + '/' + book + '/' + str(c)
-		regex = '<sup>[0-9]*</sup>(.[^/]*)</p>'
+		url = 'http://ie8.bibliaonline.com.br/' + version + '/' + book + '/' + str(c)
+		regex = "<p class='[even|odd]+ verse' verse='[0-9]+'>\n(.*)\n<\/p>"
 		page = urllib.request.urlopen(url)
 		html = page.read()
 		html = html.decode('utf-8')
@@ -88,7 +88,7 @@ while(n <= m):
 				testament = 1
 			else:
 				testament = 2
-			verses.append("('" + version + "','" + str(testament) + "','" + str(n) + "','" + str(c) + "','" + str(v) + "','" + t + "')")
+			verses.append("('" + version + "','" + str(testament) + "','" + str(n+1) + "','" + str(c) + "','" + str(v) + "','" + t + "')")
 			v += 1
 		c += 1
 	n += 1

@@ -22,8 +22,8 @@ while(n <= m):
 	print('Parsing... ' + name)
 	while(c <= chap):
 		file.write('\t<chapter number="' + str(c) + '">\n')
-		url = 'http://www.bibliaonline.com.br/' + version + '/' + book + '/' + str(c)
-		regex = '<sup>[0-9]*</sup>(.[^/]*)</p>'
+		url = 'http://ie8.bibliaonline.com.br/' + version + '/' + book + '/' + str(c)
+		regex = "<p class='[even|odd]+ verse' verse='[0-9]+'>\n(.*)\n<\/p>"
 		page = urllib.request.urlopen(url)
 		html = page.read()
 		html = html.decode('utf-8')

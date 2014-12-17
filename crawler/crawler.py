@@ -2,6 +2,7 @@
 # -*- encoding: utf-8 -*-
 from bs4 import BeautifulSoup
 import urllib.request
+import re
 
 url = []
  
@@ -12,8 +13,11 @@ def readList():
 			url.append(line)
 	except:
 		print('Cannot open the file list.txt!')
+
 def readUrl():
 	u = input('URL: ')
+	if not(re.search('http',u)):
+		u = 'http://' + u
 	url.append(u)
 
 def readPage():
@@ -33,18 +37,25 @@ def crawl():
 	file = open('links.txt', 'w+')
 	for u in url:
 		links = []
+		final = []
+		u = re.sub('\n$', '', u)
 		page = urllib.request.urlopen(u)
 		html = page.read()
 		soup = BeautifulSoup(html)
 		for a in soup.find_all('a'):
 			try:
-				links.append(a['href'])
+				if(re.search('http', a['href'])):
+					links.append(a['href'])
+				else:
+					href = u + a['href']
+					links.append(href)				
 			except:
 				print('ERROR: Cant parse ' + str(a))
-		links.sort()
-		for l in links:
-			print(l + '\n')
-			file.write(l + '\n')
+		final = sorted(set(links))
+		for l in final:
+			if(l != '#' and l != '/'):
+				print(l + '\n')
+				file.write(l + '\n')
 	file.close()
 options()
 crawl()

