@@ -1,4 +1,4 @@
 Python Scripts
 ==============
 
-Coleção de scripts escritas em Python 3 para facilitar tarefas do dia-a-dia.
+ColeÃ§Ã£o de scripts escritos em Python 3 para facilitar tarefas do dia-a-dia.
