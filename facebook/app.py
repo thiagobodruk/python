@@ -3,7 +3,7 @@ import requests, json
 
 class Facebook:
 
-	app_id, app_secret = ('670423706326155','4a27fbaff89c7af041ec6fa884c9de95')
+	app_id, app_secret = ('ABC','12345')
 	url, token = ('https://graph.facebook.com', None)
 	
 	def __init__(self, token=''):
