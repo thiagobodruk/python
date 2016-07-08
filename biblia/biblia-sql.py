@@ -74,7 +74,7 @@ while(n <= m):
 	print('Parsing... ' + name)
 	while(c <= chap):
 		url = 'http://ie8.bibliaonline.com.br/' + version + '/' + book + '/' + str(c)
-		regex = "<p class='[even|odd]+ verse' verse='[0-9]+'>\n(.*)\n<\/p>"
+		regex = "<span class=\"text\">([a-zA-Z ,.:;!?\-_ÁáÉéÍíÓóÚúÂâÊêÔôçãõüà]+)<\/span>"
 		page = urllib.request.urlopen(url)
 		html = page.read()
 		html = html.decode('utf-8')

