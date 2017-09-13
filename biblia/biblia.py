@@ -69,7 +69,7 @@ class Biblia:
              {"abbrev-pt": "tg", "abbrev-en": "jm", "chapters": 5, "pt": "Tiago", "en": "James"},
              {"abbrev-pt": "1pe", "abbrev-en": "1pe", "chapters": 5, "pt": "1 Pedro", "en": "1 Peter"},
              {"abbrev-pt": "2pe", "abbrev-en": "2pe", "chapters": 3, "pt": "2 Pedro", "en": "2 Peter"},
-             {"abbrev-pt": "1jo", "abbrev-en": "1jo", "chapters": 3, "pt": "1 João", "en": "1 John"},
+             {"abbrev-pt": "1jo", "abbrev-en": "1jo", "chapters": 5, "pt": "1 João", "en": "1 John"},
              {"abbrev-pt": "2jo", "abbrev-en": "2jo", "chapters": 1, "pt": "2 João", "en": "2 John"},
              {"abbrev-pt": "3jo", "abbrev-en": "3jo", "chapters": 1, "pt": "3 João", "en": "3 John"},
              {"abbrev-pt": "jd", "abbrev-en": "jd", "chapters": 1, "pt": "Judas", "en": "Jude"},
